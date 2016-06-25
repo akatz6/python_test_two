@@ -1,0 +1,34 @@
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<a href="/">Logout</a>
+	<h2>Welcome {{users.alias}} !</h2>
+	<p>You have been poked by {{count}} people</p>
+	{%for people in peoples%}
+		<p>{{people.who_poked.name}} poked you {{people.poked}} times.</p>
+	{%endfor%}
+	<p>People you may want to poke:</p>
+	<table class="table table-striped">
+		<tr>
+			<th>Name</th>
+			<th>Alias</th>
+			<th>Email</th>
+			<th>Poke Histroy</th>
+			<th>Action</th>
+		</tr>
+		{%for user in all_users%}
+		<tr>
+			<td>{{user.name}}</td>
+			<td>{{user.alias}}</td>
+			<td>{{user.email}}</td>
+			<td>{{user.poked}} Pokes</td>
+			<form action = "/poked/{{user.id}}">
+			<td><input type="submit" value="poke"></t>
+			</form>
+		</tr>
+		{%endfor%}
+	</table>
+</body>
+</html

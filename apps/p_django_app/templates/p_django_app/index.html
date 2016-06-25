@@ -1,0 +1,57 @@
+<html>
+<head>
+	<title>Login</title>
+	{% load staticfiles %}
+	<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+	<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+	<script src="{% static 'js/bootstrap.min.js' %}"></script>
+</head>
+<body>
+	<h2>Welcome</h2>
+	<div class="row">
+		<div class="col-xs-12 col-sm-6 col-md-4">
+			<form action="/register" method="post" class="register">
+				{% csrf_token %}
+				Name:
+				<input type="text" name="name" >
+				Alias:
+				<input type="text" name="alias">
+				Email:
+				<input type="text" name="email">
+				Password:
+				<input type="password" name="password">
+				<p>*Password must be at lead 8 characters</p>
+				Confirm PW:
+				<input type="password" name="confirm_password">
+				Enter Birthday:
+				<input type="date" name="bday">
+				<input type="submit" value="Register">
+				{% if errors %}
+				<ul class="messages">
+    			{% for error, key in errors.items %}
+    				<li{% if error.tags %} class="{{ error.tags }}"{% endif %}>{{ 	key }}</li>
+    			{% endfor %}
+					</ul>
+				{% endif %}
+			</form>
+		</div>
+		<div class="col-xs-12 col-sm-6 col-md-4">
+			<form action="/login" method="post" class="login">
+				{% csrf_token %}
+				Email:
+				<input type="text" name="email">
+				Password:
+				<input type="password" name="password">
+				<input type="submit" value="Login">
+				{% if errors_login %}
+				<ul class="messages">
+				{% for error, key in errors_login.items %}
+    				<li{% if error.tags %} class="{{ error.tags }}"{% endif %}>{{ 	key }}</li>
+    			{% endfor %}
+					</ul>
+				{% endif %}
+			</form>
+		</div>
+	</div>
+</body>
+</html>
